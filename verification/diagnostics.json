@@ -1,0 +1,14 @@
+{
+  "N_NEAREST": true,
+  "N_EMA": true,
+  "N_RVQ": true,
+  "M_MIX": true,
+  "G16_K16": true,
+  "bf16_max_abs_serial_vs_packed_cached": 0.0,
+  "bf16_serial_argmax_disagreements": 0,
+  "bf16_decision_h_abs": 0.0,
+  "resume_exact": true,
+  "micro_gradient_equal": true,
+  "b0_native_exact": true,
+  "target_alone_cpu_12_tokens_ns": 32613500
+}

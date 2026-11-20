@@ -1,0 +1,16 @@
+{
+  "before": {
+    "base": "c7f2e8858d48011290ba409462eb48af701d4c619291fdd9af532206f6c8b44f",
+    "adapter": "773b56df679c85013d2e57eedcca78eaa506b998080f15acacbdd90f8acaf543"
+  },
+  "after": {
+    "base": "c7f2e8858d48011290ba409462eb48af701d4c619291fdd9af532206f6c8b44f",
+    "adapter": "773b56df679c85013d2e57eedcca78eaa506b998080f15acacbdd90f8acaf543"
+  },
+  "params": 311296,
+  "book_storage": 32768,
+  "encoder_output": 2048,
+  "stages": 1,
+  "groups": 8,
+  "choices": 256
+}

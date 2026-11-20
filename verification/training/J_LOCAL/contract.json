@@ -1,0 +1,131 @@
+{
+  "arm": "J_LOCAL",
+  "config": {
+    "scope": "local implementation and CPU/tiny tests; no automatic production GPU execution",
+    "source_commit": "5001e60cbbf0342198d2ea855dd2e59b9c9edc54",
+    "baseline_adapter_sha256": "b80519724c78cf494b2f29930370331a5231040e759f5ab28593090e02670b5b",
+    "baseline_model_manifest_sha256": "3aa01f3c1f4b9bf488fbe696a374775e4ebf371be1a1836f5a1bda02256c3ee4",
+    "target_policy": "greedy_first_reject_batched_target_v1",
+    "teacher_update": false,
+    "original_lora_update": true,
+    "draft_window": 8,
+    "max_new": 128,
+    "epsilon": 0.5,
+    "train_recipe.epochs": 5,
+    "train_recipe.effective_windows": 32,
+    "train_recipe.micro": 2,
+    "train_recipe.seed": 42,
+    "train_recipe.lr": 0.0001,
+    "train_recipe.weight_decay": 0.01,
+    "train_recipe.selection": "calibration_ce_with_last_reported",
+    "data.train_requests": 3986,
+    "data.train_windows": 156688,
+    "data.calibration_requests": 503,
+    "data.calibration_windows": 19736,
+    "data.dev_eval_requests": 200,
+    "data.retained_evaluated": 0,
+    "data.dev200_is_independent_test": false,
+    "codec.kind": "categorical_st",
+    "codec.groups": 8,
+    "codec.choices": 256,
+    "codec.code_dim": 16,
+    "codec.latent_dim": 128,
+    "codec.gate_dim": 448,
+    "codec.payload_bits": 64,
+    "codec.receiver": "linear128_to_R_no_bias_zero_init",
+    "codec.book_init": "normal_std_0.02",
+    "invariants": [
+      "base/adapter identity and original forward",
+      "Target parameters and native acceptance",
+      "data/split/label/H lineage",
+      "pair seed and order",
+      "total declared supervision budget",
+      "optimizer hyperparameters unless declared",
+      "common checkpoint selection",
+      "wire version and actual byte accounting",
+      "gate history semantics"
+    ],
+    "loss.lambda_margin": 0.1,
+    "loss.lambda_prefix": 0.1,
+    "loss.lambda_entropy": 0.01,
+    "loss.delta": 0.0,
+    "loss.tau": 1.0,
+    "loss.commitment": 0.25,
+    "ema.decay": 0.99,
+    "ema.epsilon": 1e-05,
+    "cluster.iterations": 8,
+    "cluster.samples": 4096,
+    "compute.base_dtype": "bfloat16",
+    "compute.adapter_dtype": "float32",
+    "order": "seed+zero_based_epoch",
+    "codec.stages": 1,
+    "codec.pretrain": "included_in_updates",
+    "input.teacher_h": "zero",
+    "input.all_conditioning": "native",
+    "training.schedule": null,
+    "loss.balance": false,
+    "loss.sharp": false,
+    "loss.auxiliary": "none",
+    "evaluation.budget": "8B",
+    "decode.backend": "original",
+    "codec.update": "gradient",
+    "policy.cost_per_byte": 0.0001,
+    "policy.cost_per_ms": 0.001,
+    "feedback.enabled": true,
+    "training.enabled": true,
+    "dynamic_rank_hooks": true,
+    "save_adapter_copy": true
+  },
+  "source": "cf6a4258f685d24ee7d85dd9aa204fff846b27ee2308c0eaffc535ba952d469b",
+  "assets": {
+    "fixture": "qwen3-local-fp32",
+    "base": "c7f2e8858d48011290ba409462eb48af701d4c619291fdd9af532206f6c8b44f",
+    "adapter": "773b56df679c85013d2e57eedcca78eaa506b998080f15acacbdd90f8acaf543",
+    "teacher": "d7ffd00764718196e294d1f5eda397490e1ca410ecbf39ea0d57d5c084b12c4b"
+  },
+  "identities": {
+    "base": "c7f2e8858d48011290ba409462eb48af701d4c619291fdd9af532206f6c8b44f",
+    "adapter": "773b56df679c85013d2e57eedcca78eaa506b998080f15acacbdd90f8acaf543"
+  },
+  "schema": [
+    {
+      "path": "model.layers.0.self_attn.q_proj",
+      "rank": 3,
+      "scale": 2.0,
+      "start": 0,
+      "stop": 3,
+      "adapter_dtype": "torch.float32"
+    },
+    {
+      "path": "model.layers.0.self_attn.v_proj",
+      "rank": 5,
+      "scale": 2.0,
+      "start": 3,
+      "stop": 8,
+      "adapter_dtype": "torch.float32"
+    },
+    {
+      "path": "model.layers.1.self_attn.v_proj",
+      "rank": 6,
+      "scale": 2.0,
+      "start": 8,
+      "stop": 14,
+      "adapter_dtype": "torch.float32"
+    }
+  ],
+  "data": {
+    "train": {
+      "hidden": "6659cde217786ad2cb01b401e87aaa10571ee64058532a844e93ada9bbabfae9",
+      "order": "8161a5e48810eb78a3ea28f66c9fe194e4b181545b52251542bca5c72f065684"
+    },
+    "calibration": {
+      "hidden": "6d5284367b3af7461eaddcc2d65d2e27c933faef7bc9838b9d9e534ce1e690b1",
+      "order": "27132a4faff4ac303bafbfd62ba9eb29d0571db2fd4377cfb994ca06dc6e543f"
+    }
+  },
+  "recipe": {
+    "epochs": 2,
+    "batch": 9,
+    "micro": 3
+  }
+}

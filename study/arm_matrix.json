@@ -1,0 +1,433 @@
+{
+  "schema": "design_registry_v1_to_be_materialized_by_implementation",
+  "common": {
+    "scope": "local implementation and CPU/tiny tests; no automatic production GPU execution",
+    "source_commit": "5001e60cbbf0342198d2ea855dd2e59b9c9edc54",
+    "baseline_adapter_sha256": "b80519724c78cf494b2f29930370331a5231040e759f5ab28593090e02670b5b",
+    "baseline_model_manifest_sha256": "3aa01f3c1f4b9bf488fbe696a374775e4ebf371be1a1836f5a1bda02256c3ee4",
+    "target_policy": "greedy_first_reject_batched_target_v1",
+    "teacher_update": false,
+    "original_lora_update": false,
+    "draft_window": 8,
+    "max_new": 128,
+    "epsilon": 0.5,
+    "train_recipe": {
+      "epochs": 5,
+      "effective_windows": 32,
+      "micro": 2,
+      "seed": 42,
+      "lr": 0.0001,
+      "weight_decay": 0.01,
+      "selection": "calibration_ce_with_last_reported"
+    },
+    "data": {
+      "train_requests": 3986,
+      "train_windows": 156688,
+      "calibration_requests": 503,
+      "calibration_windows": 19736,
+      "dev_eval_requests": 200,
+      "retained_evaluated": 0,
+      "dev200_is_independent_test": false
+    },
+    "codec": {
+      "kind": "categorical_st",
+      "groups": 8,
+      "choices": 256,
+      "code_dim": 16,
+      "latent_dim": 128,
+      "gate_dim": 448,
+      "payload_bits": 64,
+      "receiver": "linear128_to_R_no_bias_zero_init",
+      "book_init": "normal_std_0.02"
+    },
+    "invariants": [
+      "base/adapter identity and original forward",
+      "Target parameters and native acceptance",
+      "data/split/label/H lineage",
+      "pair seed and order",
+      "total declared supervision budget",
+      "optimizer hyperparameters unless declared",
+      "common checkpoint selection",
+      "wire version and actual byte accounting",
+      "gate history semantics"
+    ]
+  },
+  "required_arm_count": 28,
+  "arms": [
+    {
+      "id": "B0",
+      "parent": null,
+      "changed_factor": "untouched_static_draft_lora",
+      "overrides": {
+        "feedback.enabled": false,
+        "training.enabled": false,
+        "dynamic_rank_hooks": false,
+        "codec.payload_bits": 0
+      },
+      "mode": "evaluate_only",
+      "stage": "core",
+      "notes": "Primary baseline. Original A/B, no controller and no baseline optimizer."
+    },
+    {
+      "id": "C0",
+      "parent": "B0",
+      "changed_factor": "whole_feedback_method",
+      "overrides": {
+        "feedback.enabled": true,
+        "training.enabled": true,
+        "dynamic_rank_hooks": true,
+        "codec.payload_bits": 64
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": "Mirror formal78 categorical 8x256x16 + receiver128->448. This is a method-level comparison, not a pure capacity claim."
+    },
+    {
+      "id": "C_LOCAL",
+      "parent": "C0",
+      "changed_factor": "teacher_feature_transform",
+      "overrides": {
+        "input.teacher_h": "zero"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": "Same encoder/receiver and 64-bit quality-comparison budget; known protocol unchanged."
+    },
+    {
+      "id": "C_CONST",
+      "parent": "C0",
+      "changed_factor": "conditioning_transform",
+      "overrides": {
+        "input.all_conditioning": "constant_zero"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": "Capacity/control diagnostic; same dimensions and transmitted bits."
+    },
+    {
+      "id": "C_SHUFFLE",
+      "parent": "C0",
+      "changed_factor": "teacher_feature_transform",
+      "overrides": {
+        "input.teacher_h": "cross_request_per_split_matched_bucket"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": "Donor mapping fixed and saved. Only H shuffled; local protocol unchanged."
+    },
+    {
+      "id": "T_SOFT_HARD",
+      "parent": "C0",
+      "changed_factor": "quantization_training_schedule",
+      "overrides": {
+        "training.quantization_schedule": [
+          {
+            "fraction": 0.25,
+            "forward": "soft"
+          },
+          {
+            "fraction": 0.75,
+            "forward": "hard_st"
+          }
+        ]
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": ""
+    },
+    {
+      "id": "T_STAGE_RAND",
+      "parent": "C0",
+      "changed_factor": "staged_training_program",
+      "overrides": {
+        "training.schedule": {
+          "continuous_task": 0.25,
+          "classifier_bootstrap": 0.25,
+          "hard_joint": 0.5
+        },
+        "initialization.prototype_rule": "random"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": "Both staged arms share trained reference/data/budget. Full staged bundle vs C0 is not component-wise attribution."
+    },
+    {
+      "id": "T_STAGE_DATA",
+      "parent": "T_STAGE_RAND",
+      "changed_factor": "prototype_initialization_rule",
+      "overrides": {
+        "initialization.prototype_rule": "train_latent_kmeans"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": "Both staged arms share trained reference/data/budget. Full staged bundle vs C0 is not component-wise attribution."
+    },
+    {
+      "id": "L_MARGIN",
+      "parent": "C0",
+      "changed_factor": "auxiliary_loss",
+      "overrides": {
+        "loss.auxiliary": "target_vs_max_competitor_margin"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": ""
+    },
+    {
+      "id": "L_PREFIX",
+      "parent": "C0",
+      "changed_factor": "auxiliary_loss",
+      "overrides": {
+        "loss.auxiliary": "masked_soft_prefix_survival"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": ""
+    },
+    {
+      "id": "U_BALANCE",
+      "parent": "C0",
+      "changed_factor": "usage_regularizer",
+      "overrides": {
+        "loss.balance": true
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": ""
+    },
+    {
+      "id": "U_SHARP",
+      "parent": "C0",
+      "changed_factor": "assignment_regularizer",
+      "overrides": {
+        "loss.sharp": true
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": ""
+    },
+    {
+      "id": "U_BALANCE_SHARP",
+      "parent": "U_BALANCE",
+      "changed_factor": "assignment_regularizer",
+      "overrides": {
+        "loss.sharp": true
+      },
+      "mode": "train_then_evaluate",
+      "stage": "core",
+      "notes": ""
+    },
+    {
+      "id": "G16_K16",
+      "parent": "C0",
+      "changed_factor": "code_grouping",
+      "overrides": {
+        "codec.groups": 16,
+        "codec.choices": 16,
+        "codec.code_dim": 8,
+        "codec.latent_dim": 128,
+        "codec.payload_bits": 64
+      },
+      "mode": "train_then_evaluate",
+      "stage": "structure",
+      "notes": "receiver unchanged; 4-bit packing needed; derived parameter and compute differences must be reported."
+    },
+    {
+      "id": "N_NEAREST",
+      "parent": "C0",
+      "changed_factor": "quantizer_family",
+      "overrides": {
+        "codec.kind": "nearest_neighbor_st",
+        "codec.update": "gradient_embedding_loss"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "structure",
+      "notes": "Task+embedding+commitment family. Not a causal claim about only one auxiliary loss."
+    },
+    {
+      "id": "N_EMA",
+      "parent": "N_NEAREST",
+      "changed_factor": "codebook_updater",
+      "overrides": {
+        "codec.update": "ema_count_vector"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "structure",
+      "notes": "Derived book optimizer/embedding-loss policy recorded; no double update in same arm."
+    },
+    {
+      "id": "N_RVQ",
+      "parent": "N_NEAREST",
+      "changed_factor": "quantizer_topology",
+      "overrides": {
+        "codec.kind": "grouped_residual_nearest",
+        "codec.groups": 8,
+        "codec.stages": 2,
+        "codec.choices": 16,
+        "codec.code_dim": 16,
+        "codec.latent_dim": 128,
+        "codec.payload_bits": 64
+      },
+      "mode": "train_then_evaluate",
+      "stage": "structure",
+      "notes": "Residual stages summed per group. Capacity differs from nearest single-stage K256; report it."
+    },
+    {
+      "id": "D_FUSED",
+      "parent": "C0",
+      "changed_factor": "deployment_decode_backend",
+      "overrides": {
+        "decode.backend": "receiver_block_projected_tables_sum_then_tanh"
+      },
+      "mode": "same_checkpoint_evaluate_only",
+      "stage": "deployment",
+      "notes": "No retraining. Different FP summation order may be approximate; preserve original default and report memory."
+    },
+    {
+      "id": "M8_FIXED",
+      "parent": "C0",
+      "changed_factor": "maximum_budget_mother_architecture",
+      "overrides": {
+        "codec.kind": "parallel_additive_multirate",
+        "codec.groups": 8,
+        "codec.stages": 2,
+        "codec.max_choices": 256,
+        "codec.code_dim": 16,
+        "codec.latent_dim": 128,
+        "codec.budget_levels": {
+          "4B": {
+            "stages": 1,
+            "choices": 16
+          },
+          "8B": {
+            "stages": 1,
+            "choices": 256
+          },
+          "16B": {
+            "stages": 2,
+            "choices": 256
+          }
+        },
+        "training.budget_distribution": {
+          "8B": 1.0
+        },
+        "evaluation.budget": "8B"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "multirate",
+      "notes": "Within-M family control, not an architecture-matched C0 ablation."
+    },
+    {
+      "id": "M4_FIXED",
+      "parent": "M8_FIXED",
+      "changed_factor": "fixed_budget",
+      "overrides": {
+        "training.budget_distribution": {
+          "4B": 1.0
+        },
+        "evaluation.budget": "4B"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "multirate",
+      "notes": ""
+    },
+    {
+      "id": "M16_FIXED",
+      "parent": "M8_FIXED",
+      "changed_factor": "fixed_budget",
+      "overrides": {
+        "training.budget_distribution": {
+          "16B": 1.0
+        },
+        "evaluation.budget": "16B"
+      },
+      "mode": "train_then_evaluate",
+      "stage": "multirate",
+      "notes": ""
+    },
+    {
+      "id": "M_MIX",
+      "parent": "M8_FIXED",
+      "changed_factor": "training_budget_distribution",
+      "overrides": {
+        "training.budget_distribution": {
+          "4B": 0.3333333333333333,
+          "8B": 0.3333333333333333,
+          "16B": 0.3333333333333333
+        }
+      },
+      "mode": "train_then_evaluate",
+      "stage": "multirate",
+      "notes": ""
+    },
+    {
+      "id": "M_MIX_E4",
+      "parent": "M_MIX",
+      "changed_factor": "evaluation_budget",
+      "overrides": {
+        "evaluation.budget": "4B"
+      },
+      "mode": "same_checkpoint_evaluate_only",
+      "stage": "multirate",
+      "notes": ""
+    },
+    {
+      "id": "M_MIX_E8",
+      "parent": "M_MIX",
+      "changed_factor": "evaluation_budget",
+      "overrides": {
+        "evaluation.budget": "8B"
+      },
+      "mode": "same_checkpoint_evaluate_only",
+      "stage": "multirate",
+      "notes": ""
+    },
+    {
+      "id": "M_MIX_E16",
+      "parent": "M_MIX",
+      "changed_factor": "evaluation_budget",
+      "overrides": {
+        "evaluation.budget": "16B"
+      },
+      "mode": "same_checkpoint_evaluate_only",
+      "stage": "multirate",
+      "notes": ""
+    },
+    {
+      "id": "M_POLICY",
+      "parent": "M_MIX",
+      "changed_factor": "budget_selection_policy",
+      "overrides": {
+        "evaluation.budget_policy": "cheap_fitted_lookup"
+      },
+      "mode": "same_checkpoint_evaluate_only",
+      "stage": "multirate",
+      "notes": "Policy fitting data separate; one encode/decode per round; include policy cost. No online optimizer."
+    },
+    {
+      "id": "J_H",
+      "parent": "C0",
+      "changed_factor": "trainable_parameter_set",
+      "overrides": {
+        "original_lora_update": true,
+        "save_adapter_copy": true
+      },
+      "mode": "train_then_evaluate",
+      "stage": "optional_disabled",
+      "notes": "Never overwrite B0. Formal launch not implied."
+    },
+    {
+      "id": "J_LOCAL",
+      "parent": "C_LOCAL",
+      "changed_factor": "trainable_parameter_set",
+      "overrides": {
+        "original_lora_update": true,
+        "save_adapter_copy": true
+      },
+      "mode": "train_then_evaluate",
+      "stage": "optional_disabled",
+      "notes": "Matched training control for additional LoRA optimization."
+    }
+  ],
+  "comparison_validation": "Expand configs, compare all materialized settings; allow named factor and explicitly documented deterministic derived fields only. Do not merely diff raw override dictionaries."
+}

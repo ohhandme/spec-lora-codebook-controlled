@@ -1,0 +1,28 @@
+{
+  "arm": "T_STAGE_RAND",
+  "selected_epoch": 2,
+  "trainable": [
+    "book",
+    "receiver.weight",
+    "encoder.0.weight",
+    "encoder.0.bias",
+    "encoder.2.weight",
+    "encoder.2.bias",
+    "reference.0.weight",
+    "reference.0.bias",
+    "reference.2.weight",
+    "reference.2.bias"
+  ],
+  "trainable_grad_observed": [
+    "book",
+    "encoder.0.bias",
+    "encoder.0.weight",
+    "encoder.2.bias",
+    "encoder.2.weight",
+    "receiver.weight",
+    "reference.0.bias",
+    "reference.0.weight",
+    "reference.2.bias",
+    "reference.2.weight"
+  ]
+}

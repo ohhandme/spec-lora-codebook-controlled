@@ -1,0 +1,18 @@
+{
+  "arm": "N_EMA",
+  "selected_epoch": 2,
+  "trainable": [
+    "receiver.weight",
+    "encoder.0.weight",
+    "encoder.0.bias",
+    "encoder.2.weight",
+    "encoder.2.bias"
+  ],
+  "trainable_grad_observed": [
+    "encoder.0.bias",
+    "encoder.0.weight",
+    "encoder.2.bias",
+    "encoder.2.weight",
+    "receiver.weight"
+  ]
+}

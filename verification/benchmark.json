@@ -1,0 +1,44 @@
+{
+  "scope": "synthetic production shape, CPU FP32",
+  "timings": {
+    "encoder": {
+      "p50_ns": 225700,
+      "p95_ns": 951400,
+      "n": 100
+    },
+    "argmax": {
+      "p50_ns": 22600,
+      "p95_ns": 100200,
+      "n": 100
+    },
+    "pack": {
+      "p50_ns": 7100,
+      "p95_ns": 30700,
+      "n": 100
+    },
+    "unpack": {
+      "p50_ns": 9900,
+      "p95_ns": 15200,
+      "n": 100
+    },
+    "encode_and_pack": {
+      "p50_ns": 336900,
+      "p95_ns": 724900,
+      "n": 100
+    },
+    "decode": {
+      "p50_ns": 126300,
+      "p95_ns": 197000,
+      "n": 100
+    },
+    "fused": {
+      "p50_ns": 102900,
+      "p95_ns": 190800,
+      "n": 100
+    }
+  },
+  "precompute_ns": 5284100,
+  "fused_bytes": 3670016,
+  "regular_bytes": 360448,
+  "gate_max_abs": 4.656612873077393e-10
+}
