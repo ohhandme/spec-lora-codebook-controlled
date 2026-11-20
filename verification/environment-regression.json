@@ -1,0 +1,84 @@
+{
+  "identical_accepted": true,
+  "missing_environment_rejected": true,
+  "metadata_changes_rejected": [
+    "device",
+    "target_dtype",
+    "draft_layout",
+    "target_attention",
+    "torch",
+    "transformers",
+    "kernel"
+  ],
+  "actual_bf16_draft_rejected": true,
+  "actual_cuda": false,
+  "observed": {
+    "schema": 1,
+    "models": {
+      "target": {
+        "attention": "eager",
+        "embedding_dtype": "torch.float32",
+        "parameter_and_buffer_dtypes": [
+          "torch.float32"
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "placement_dtype_sha256": "9d02ca54c977e89c82859506306fec9b0be638c8311e4ffe70e4668f66469211"
+      },
+      "draft": {
+        "attention": "eager",
+        "embedding_dtype": "torch.float32",
+        "parameter_and_buffer_dtypes": [
+          "torch.float32"
+        ],
+        "devices": [
+          "cpu"
+        ],
+        "placement_dtype_sha256": "f4c84c4d17210e1ca32d9ac6e9521b61392d29781e4430067d760a7ba05d2773"
+      }
+    },
+    "hardware": {
+      "cpu": {
+        "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+        "isa": "AVX2"
+      }
+    },
+    "python": "3.13.2",
+    "platform": [
+      "Windows",
+      "AMD64",
+      "11"
+    ],
+    "torch": "2.9.1+cpu",
+    "transformers": "4.57.3",
+    "cuda_build": null,
+    "hip_build": null,
+    "cudnn": null,
+    "threads": [
+      1,
+      16
+    ],
+    "default_dtype": "torch.float32",
+    "matmul_precision": "highest",
+    "autocast": {
+      "cpu": {
+        "enabled": false,
+        "dtype": "torch.bfloat16"
+      }
+    },
+    "deterministic": false,
+    "mkldnn": true,
+    "cuda_matmul_tf32": false,
+    "cudnn_tf32": true,
+    "cudnn_enabled": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "sdpa": {
+      "flash": true,
+      "math": true,
+      "efficient": true,
+      "cudnn": true
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "selected": 2,
   "last": 2,
-  "key": "e8b251d08b0ea2b57ed7708091f93f212fd3c22cfa12c77cbb31afa7e2b55e48",
+  "key": "05600897b0db5eabb8c9159a39d49e5ef718adef44a61eea7411d753ef91390a",
   "scores": [
     {
       "epoch": 1,
@@ -18,7 +18,7 @@
       "windows": 54,
       "task_tokens": 132,
       "prototype_labels": 0,
-      "seconds": 0.5080944000001182,
+      "seconds": 0.8051869000046281,
       "hard_counts": {
         "4B_stage0": [
           [

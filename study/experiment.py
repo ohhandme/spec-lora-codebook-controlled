@@ -11,6 +11,7 @@ from data import write
 from quantizer import Quantizer
 from training import fit,Donors,apply_state
 from online import evaluate_request,fit_policy
+from environment import execution_environment
 
 
 def code_id():
@@ -105,7 +106,20 @@ def paired(rows,ref):
     return dict(request_delta=diffs,mean=sum(diffs.values())/len(diffs),family_bootstrap95=[boot[12],boot[487]])
 
 
+def comparison_binding(target,model,asset,rows,limit,eos,tcp):
+    return dict(source=code_id(),assets=asset,profile=dict(shared),tcp=tcp,eval=digest(rows),
+                policy="native_greedy_batched",limit=limit,eos=eos,environment=execution_environment(target,model))
+
+
+def check_reference(reference,expected,binding):
+    require(reference.get("arm")==expected,"incorrect comparator arm")
+    ref=reference.get("comparison_binding") or {}
+    require(ref.get("environment")==binding["environment"],"missing or different evaluator environment")
+    require(ref==binding,"different comparator source, shared profile, execution mode or input data")
+
+
 def eval_arm(target,model,paths,arm,asset,ck,rows,limit,eos,dev=None,fit_rows=None,tcp=False):
+    binding=comparison_binding(target,model,asset,rows,limit,eos,tcp)
     gates,ctrl=(None,None) if arm=="B0" else restore(model,paths,target.hidden_size,arm,asset,ck)
     donor=Donors(dev) if arm=="C_SHUFFLE" else None
     budget=int(expanded(arm)["evaluation.budget"][:-1])
@@ -117,7 +131,7 @@ def eval_arm(target,model,paths,arm,asset,ck,rows,limit,eos,dev=None,fit_rows=No
             policy=fit_policy(rec)
         records=[evaluate_request(target,model,gates,ctrl,arm,r,budget,limit,eos,donors=donor,policy=policy,tcp=tcp) for r in rows]
         return dict(arm=arm,checkpoint=sha(ck) if ck else None,policy=policy,summary=summarize(records),rows=records,
-                    heldout_requests=0,independent_test=False)
+                    comparison_binding=binding,heldout_requests=0,independent_test=False)
     finally:
         if gates:gates.close()
 
@@ -178,19 +192,20 @@ def execute(a):
     if do_train:
         return train(model,paths,4096,a.arm,data,asset,a.out,dict(epochs=5,batch=32,micro=2))
     require((a.arm=="B0")== (a.checkpoint is None),"B0 takes no codec checkpoint; trained arms require one")
-    bind(a.out/"eval-contract.json",dict(arm=a.arm,model=asset,ck=sha(a.checkpoint) if a.checkpoint else None,
-         source=code_id(),roster=sha(a.roster),tcp=a.tcp))
+    binding=comparison_binding(target,model,asset,roster[:200],128,151645,a.tcp)
+    references={}
+    for name,other,expected in (("baseline",a.baseline_result,"B0"),("parent",a.parent_result,specs[a.arm]["parent"])):
+        if other:
+            references[name]=read(other)
+            check_reference(references[name],expected,binding)
+    bind(a.out/"eval-contract.json",dict(arm=a.arm,ck=sha(a.checkpoint) if a.checkpoint else None,
+         comparison_binding=binding))
     fam={r["family_id"] for r in roster[:200]}
     fit_rows=[r for r in roster[200:] if r["family_id"] not in fam]
     result=eval_arm(target,model,paths,a.arm,asset,a.checkpoint,roster[:200],128,151645,data.get("calibration"),fit_rows,a.tcp)
-    result["comparison_binding"]=dict(source=code_id(),assets=asset,profile=dict(shared),tcp=a.tcp,
-                                      eval="development200",policy="native_greedy_batched",limit=128)
-    for name,other,expected in (("baseline",a.baseline_result,"B0"),("parent",a.parent_result,specs[a.arm]["parent"])):
-        if other:
-            reference=read(other)
-            require(reference["arm"]==expected and reference["comparison_binding"]==result["comparison_binding"],
-                    "incorrect comparator, source, shared profile, execution mode or input data")
-            result[name]=paired(result["rows"],reference["rows"])
+    require(result["comparison_binding"]==binding,"evaluator settings changed during setup")
+    for name,reference in references.items():
+        result[name]=paired(result["rows"],reference["rows"])
     write(a.out/"result.json",result)
 
 

@@ -1,6 +1,6 @@
 {
   "arm": "N_EMA",
-  "checkpoint": "ea87d8ec0dcc047405d70f2e7f11f0fda69367bd075ed68dedeeae06504bbe24",
+  "checkpoint": "1e6ec3db469be00e59a93b3582afcdfb992d2c453ef6634181911b2a379f57bb",
   "policy": null,
   "summary": {
     "acceptsum": 1,
@@ -18,7 +18,7 @@
     ],
     "zero": 0.9565217391304348,
     "payload": 168,
-    "wall_ns": 504021400
+    "wall_ns": 868721300
   },
   "rows": [
     {
@@ -73,7 +73,7 @@
             ],
             "legal_prefix_sha": "24b856c278b0fe878eec601f0ce00d38e5adfac628bd9bc2d82cb7588cceeadc",
             "h_donor": null,
-            "encode_pack_ns": 519000,
+            "encode_pack_ns": 721000,
             "policy_ns": 0,
             "rate": 8
           },
@@ -91,9 +91,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 211700,
-          "boundary_draft_ns": 3149000,
-          "draft_ns": 18494500
+          "decode_ns": 244300,
+          "boundary_draft_ns": 6012800,
+          "draft_ns": 37900800
         },
         {
           "accepted": 0,
@@ -128,7 +128,7 @@
             ],
             "legal_prefix_sha": "4e482c85cab2ae2b08678b9c2b16acfa58e9932d30c036a128ff70e3a26ebd00",
             "h_donor": null,
-            "encode_pack_ns": 492500,
+            "encode_pack_ns": 864800,
             "policy_ns": 0,
             "rate": 8
           },
@@ -146,9 +146,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 227700,
-          "boundary_draft_ns": 3271400,
-          "draft_ns": 17400300
+          "decode_ns": 313500,
+          "boundary_draft_ns": 5760900,
+          "draft_ns": 39008600
         },
         {
           "accepted": 0,
@@ -183,7 +183,7 @@
             ],
             "legal_prefix_sha": "a98e9a5faccd386dc52f5b2a588796924a455afc0759982b19e404e035763352",
             "h_donor": null,
-            "encode_pack_ns": 396100,
+            "encode_pack_ns": 650100,
             "policy_ns": 0,
             "rate": 8
           },
@@ -201,9 +201,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 165200,
-          "boundary_draft_ns": 2567900,
-          "draft_ns": 27299800
+          "decode_ns": 246000,
+          "boundary_draft_ns": 4534300,
+          "draft_ns": 37778800
         },
         {
           "accepted": 0,
@@ -238,7 +238,7 @@
             ],
             "legal_prefix_sha": "05ddeb71d212818688051905e27e593ed7cdbf8dc39a6aee3f779c293b2573bc",
             "h_donor": null,
-            "encode_pack_ns": 262800,
+            "encode_pack_ns": 871700,
             "policy_ns": 0,
             "rate": 8
           },
@@ -256,9 +256,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 112500,
-          "boundary_draft_ns": 1828800,
-          "draft_ns": 23197800
+          "decode_ns": 212400,
+          "boundary_draft_ns": 5868200,
+          "draft_ns": 42580700
         },
         {
           "accepted": 0,
@@ -292,7 +292,7 @@
             ],
             "legal_prefix_sha": "872301d71c9ee03243eae8fee3b5d4272c6fbb5188b0a79600ef5bbf891fa704",
             "h_donor": null,
-            "encode_pack_ns": 293300,
+            "encode_pack_ns": 777600,
             "policy_ns": 0,
             "rate": 8
           },
@@ -309,9 +309,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 254200,
-          "boundary_draft_ns": 1866400,
-          "draft_ns": 24071700
+          "decode_ns": 218800,
+          "boundary_draft_ns": 3877200,
+          "draft_ns": 28165000
         },
         {
           "accepted": 0,
@@ -344,7 +344,7 @@
             ],
             "legal_prefix_sha": "d1ba97c390b538275245f01446c4e82c9c687e9cd4b95497591bf578b40b7cbe",
             "h_donor": null,
-            "encode_pack_ns": 312700,
+            "encode_pack_ns": 1015000,
             "policy_ns": 0,
             "rate": 8
           },
@@ -360,9 +360,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 119200,
-          "boundary_draft_ns": 2469100,
-          "draft_ns": 19124700
+          "decode_ns": 320500,
+          "boundary_draft_ns": 5645100,
+          "draft_ns": 29535400
         },
         {
           "accepted": 0,
@@ -394,7 +394,7 @@
             ],
             "legal_prefix_sha": "ef138d15dceab36769b65a083692af27b870257b28fc6fb104945dfb340c2687",
             "h_donor": null,
-            "encode_pack_ns": 265700,
+            "encode_pack_ns": 826000,
             "policy_ns": 0,
             "rate": 8
           },
@@ -409,9 +409,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 170500,
-          "boundary_draft_ns": 3970200,
-          "draft_ns": 9412400
+          "decode_ns": 305700,
+          "boundary_draft_ns": 5696800,
+          "draft_ns": 16770900
         },
         {
           "accepted": 0,
@@ -442,7 +442,7 @@
             ],
             "legal_prefix_sha": "b58f8d1cad4fd2fcadc8a304322cd1d01d4185345f26cb756c3a28efd9caa97b",
             "h_donor": null,
-            "encode_pack_ns": 1068200,
+            "encode_pack_ns": 900100,
             "policy_ns": 0,
             "rate": 8
           },
@@ -456,9 +456,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 409300,
-          "boundary_draft_ns": 5620300,
-          "draft_ns": 8614500
+          "decode_ns": 332800,
+          "boundary_draft_ns": 5983500,
+          "draft_ns": 17525900
         },
         {
           "accepted": 0,
@@ -488,7 +488,7 @@
             ],
             "legal_prefix_sha": "20ecdb136ad9e066b97e542601cfde04ceaf218954fddf7ff9195e831ddc237a",
             "h_donor": null,
-            "encode_pack_ns": 246300,
+            "encode_pack_ns": 753300,
             "policy_ns": 0,
             "rate": 8
           },
@@ -501,9 +501,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 108900,
-          "boundary_draft_ns": 2183200,
-          "draft_ns": 7407100
+          "decode_ns": 288700,
+          "boundary_draft_ns": 7658500,
+          "draft_ns": 11198800
         },
         {
           "accepted": 0,
@@ -532,7 +532,7 @@
             ],
             "legal_prefix_sha": "d835b4c2efd4574c5dfef4045181269a14dc77e3ac1f3b0edd658a064c492bf1",
             "h_donor": null,
-            "encode_pack_ns": 245500,
+            "encode_pack_ns": 1503000,
             "policy_ns": 0,
             "rate": 8
           },
@@ -544,9 +544,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 105300,
-          "boundary_draft_ns": 1657600,
-          "draft_ns": 3907300
+          "decode_ns": 339800,
+          "boundary_draft_ns": 5837300,
+          "draft_ns": 5600400
         },
         {
           "accepted": 0,
@@ -585,14 +585,14 @@
           "wire_bytes": 0,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 1200,
-          "boundary_draft_ns": 23500,
-          "draft_ns": 15200
+          "decode_ns": 2500,
+          "boundary_draft_ns": 44100,
+          "draft_ns": 44900
         }
       ],
       "accepted": 1,
       "n": 11,
-      "wall_ns": 228932700
+      "wall_ns": 395787100
     },
     {
       "request_id": "923cf16211e20014bb3d59b3c599926086ad4935612fe84ed4b98fad80813179",
@@ -645,7 +645,7 @@
             ],
             "legal_prefix_sha": "923cf16211e20014bb3d59b3c599926086ad4935612fe84ed4b98fad80813179",
             "h_donor": null,
-            "encode_pack_ns": 1190900,
+            "encode_pack_ns": 847600,
             "policy_ns": 0,
             "rate": 8
           },
@@ -663,9 +663,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 395100,
-          "boundary_draft_ns": 6875700,
-          "draft_ns": 19809500
+          "decode_ns": 290200,
+          "boundary_draft_ns": 5097100,
+          "draft_ns": 34593900
         },
         {
           "accepted": 0,
@@ -700,7 +700,7 @@
             ],
             "legal_prefix_sha": "06b39d549e6a0bc4d53a4227e1a8e3b922e4049a27aa25fb22bfd9a2f0b7a536",
             "h_donor": null,
-            "encode_pack_ns": 474100,
+            "encode_pack_ns": 737400,
             "policy_ns": 0,
             "rate": 8
           },
@@ -718,9 +718,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 205200,
-          "boundary_draft_ns": 3625600,
-          "draft_ns": 17817500
+          "decode_ns": 265900,
+          "boundary_draft_ns": 7022400,
+          "draft_ns": 40733400
         },
         {
           "accepted": 0,
@@ -755,7 +755,7 @@
             ],
             "legal_prefix_sha": "6511fae0bcc984078b76007d2e54a84687f517c688271294b120f54a510ce113",
             "h_donor": null,
-            "encode_pack_ns": 944600,
+            "encode_pack_ns": 820900,
             "policy_ns": 0,
             "rate": 8
           },
@@ -773,9 +773,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 208900,
-          "boundary_draft_ns": 7921200,
-          "draft_ns": 32013300
+          "decode_ns": 292800,
+          "boundary_draft_ns": 5926300,
+          "draft_ns": 39245500
         },
         {
           "accepted": 0,
@@ -810,7 +810,7 @@
             ],
             "legal_prefix_sha": "69ec5519516adb750c420973254668c3f9ea6d761f614cb3f40db33a26b06be1",
             "h_donor": null,
-            "encode_pack_ns": 322000,
+            "encode_pack_ns": 827400,
             "policy_ns": 0,
             "rate": 8
           },
@@ -828,9 +828,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 112200,
-          "boundary_draft_ns": 3356700,
-          "draft_ns": 21470900
+          "decode_ns": 316400,
+          "boundary_draft_ns": 5592700,
+          "draft_ns": 42077500
         },
         {
           "accepted": 0,
@@ -865,7 +865,7 @@
             ],
             "legal_prefix_sha": "5f8689141370d320c5fcdf5b9e67347fe3821b31e524f9c9a4e4b6ad36c85d6b",
             "h_donor": null,
-            "encode_pack_ns": 246000,
+            "encode_pack_ns": 863700,
             "policy_ns": 0,
             "rate": 8
           },
@@ -883,9 +883,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 103300,
-          "boundary_draft_ns": 1598500,
-          "draft_ns": 20966800
+          "decode_ns": 335900,
+          "boundary_draft_ns": 6136500,
+          "draft_ns": 42064300
         },
         {
           "accepted": 0,
@@ -919,7 +919,7 @@
             ],
             "legal_prefix_sha": "58a160b331a4a47c8586d423f31ea19c74851fd33fe8611a0657ffb0be14e6eb",
             "h_donor": null,
-            "encode_pack_ns": 524200,
+            "encode_pack_ns": 841300,
             "policy_ns": 0,
             "rate": 8
           },
@@ -936,9 +936,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 265200,
-          "boundary_draft_ns": 1628000,
-          "draft_ns": 23765400
+          "decode_ns": 305900,
+          "boundary_draft_ns": 6025300,
+          "draft_ns": 34495300
         },
         {
           "accepted": 0,
@@ -971,7 +971,7 @@
             ],
             "legal_prefix_sha": "c52cbedba7c0c4667007c3ca84890b59410e00e43c6f485bf5faba4b4829d0e4",
             "h_donor": null,
-            "encode_pack_ns": 537200,
+            "encode_pack_ns": 920800,
             "policy_ns": 0,
             "rate": 8
           },
@@ -987,9 +987,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 211200,
-          "boundary_draft_ns": 3737100,
-          "draft_ns": 22355700
+          "decode_ns": 383200,
+          "boundary_draft_ns": 5535900,
+          "draft_ns": 28982500
         },
         {
           "accepted": 0,
@@ -1021,7 +1021,7 @@
             ],
             "legal_prefix_sha": "b5424a22f135cad6bad460501f746e1aa6f74e2e01ec41cc12c63b48acb78874",
             "h_donor": null,
-            "encode_pack_ns": 243300,
+            "encode_pack_ns": 869200,
             "policy_ns": 0,
             "rate": 8
           },
@@ -1036,9 +1036,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 100900,
-          "boundary_draft_ns": 3829600,
-          "draft_ns": 9958100
+          "decode_ns": 318300,
+          "boundary_draft_ns": 5782100,
+          "draft_ns": 23474500
         },
         {
           "accepted": 0,
@@ -1069,7 +1069,7 @@
             ],
             "legal_prefix_sha": "ce52ff13d81c24b511d1e7741f280ad02b81fc659d934cb63b906fa5349a1192",
             "h_donor": null,
-            "encode_pack_ns": 449800,
+            "encode_pack_ns": 845900,
             "policy_ns": 0,
             "rate": 8
           },
@@ -1083,9 +1083,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 208100,
-          "boundary_draft_ns": 3507000,
-          "draft_ns": 11190800
+          "decode_ns": 304900,
+          "boundary_draft_ns": 5689100,
+          "draft_ns": 18224500
         },
         {
           "accepted": 0,
@@ -1115,7 +1115,7 @@
             ],
             "legal_prefix_sha": "6716fb69092d968fe629a4c4bfc023a59ac38fe0608be37f5b9f7a45d5168a75",
             "h_donor": null,
-            "encode_pack_ns": 637200,
+            "encode_pack_ns": 1275000,
             "policy_ns": 0,
             "rate": 8
           },
@@ -1128,9 +1128,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 224600,
-          "boundary_draft_ns": 4162500,
-          "draft_ns": 6293900
+          "decode_ns": 430000,
+          "boundary_draft_ns": 5500800,
+          "draft_ns": 12863100
         },
         {
           "accepted": 0,
@@ -1159,7 +1159,7 @@
             ],
             "legal_prefix_sha": "fd189f357ecd6de57977d394d805ce35f3c3ef1148998c6932b450e998b8385d",
             "h_donor": null,
-            "encode_pack_ns": 517400,
+            "encode_pack_ns": 802300,
             "policy_ns": 0,
             "rate": 8
           },
@@ -1171,9 +1171,9 @@
           "wire_bytes": 8,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 188400,
-          "boundary_draft_ns": 2330500,
-          "draft_ns": 3883300
+          "decode_ns": 409300,
+          "boundary_draft_ns": 7057200,
+          "draft_ns": 5717400
         },
         {
           "accepted": 0,
@@ -1212,16 +1212,100 @@
           "wire_bytes": 0,
           "app_up": null,
           "app_down": null,
-          "decode_ns": 1500,
-          "boundary_draft_ns": 30300,
-          "draft_ns": 14200
+          "decode_ns": 2700,
+          "boundary_draft_ns": 50000,
+          "draft_ns": 48000
         }
       ],
       "accepted": 0,
       "n": 12,
-      "wall_ns": 275088700
+      "wall_ns": 472934200
     }
   ],
+  "comparison_binding": {
+    "source": "fa5731c63e5cb43c9836e45c84e9b528b2532d18114230d5e9f1b0db1d238025",
+    "assets": {
+      "fixture": "qwen3-local-fp32",
+      "base": "c7f2e8858d48011290ba409462eb48af701d4c619291fdd9af532206f6c8b44f",
+      "adapter": "773b56df679c85013d2e57eedcca78eaa506b998080f15acacbdd90f8acaf543",
+      "teacher": "d7ffd00764718196e294d1f5eda397490e1ca410ecbf39ea0d57d5c084b12c4b"
+    },
+    "profile": {},
+    "tcp": false,
+    "eval": "bc669f9979f11abe3d26d387aba90fe5aaa9a0f9be132f4abfb12150386570c6",
+    "policy": "native_greedy_batched",
+    "limit": 12,
+    "eos": -1,
+    "environment": {
+      "schema": 1,
+      "models": {
+        "target": {
+          "attention": "eager",
+          "embedding_dtype": "torch.float32",
+          "parameter_and_buffer_dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cpu"
+          ],
+          "placement_dtype_sha256": "9d02ca54c977e89c82859506306fec9b0be638c8311e4ffe70e4668f66469211"
+        },
+        "draft": {
+          "attention": "eager",
+          "embedding_dtype": "torch.float32",
+          "parameter_and_buffer_dtypes": [
+            "torch.float32"
+          ],
+          "devices": [
+            "cpu"
+          ],
+          "placement_dtype_sha256": "f4c84c4d17210e1ca32d9ac6e9521b61392d29781e4430067d760a7ba05d2773"
+        }
+      },
+      "hardware": {
+        "cpu": {
+          "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+          "isa": "AVX2"
+        }
+      },
+      "python": "3.13.2",
+      "platform": [
+        "Windows",
+        "AMD64",
+        "11"
+      ],
+      "torch": "2.9.1+cpu",
+      "transformers": "4.57.3",
+      "cuda_build": null,
+      "hip_build": null,
+      "cudnn": null,
+      "threads": [
+        1,
+        16
+      ],
+      "default_dtype": "torch.float32",
+      "matmul_precision": "highest",
+      "autocast": {
+        "cpu": {
+          "enabled": false,
+          "dtype": "torch.bfloat16"
+        }
+      },
+      "deterministic": false,
+      "mkldnn": true,
+      "cuda_matmul_tf32": false,
+      "cudnn_tf32": true,
+      "cudnn_enabled": true,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false,
+      "sdpa": {
+        "flash": true,
+        "math": true,
+        "efficient": true,
+        "cudnn": true
+      }
+    }
+  },
   "heldout_requests": 0,
   "independent_test": false,
   "vs_B0": {
@@ -1262,6 +1346,6 @@
     ],
     "zero": 0.9565217391304348,
     "payload": 168,
-    "wall_ns": 504021400
+    "wall_ns": 868721300
   }
 }

@@ -1,7 +1,7 @@
 {
   "selected": 2,
   "last": 2,
-  "key": "4a0fa39380b88333c02a0e066fd94be05e785b33efb05826ef8455899bd13e81",
+  "key": "0a361f06a6a9958205b851b102000bf17ecff7b5c80830ffe740d6bff0a6347f",
   "scores": [
     {
       "epoch": 1,
@@ -20,7 +20,7 @@
       "windows": 18,
       "task_tokens": 48,
       "prototype_labels": 0,
-      "seconds": 0.12939559999358607,
+      "seconds": 0.23298939999949653,
       "hard_counts": {
         "8B_stage0": [
           [
@@ -2132,7 +2132,7 @@
       "windows": 36,
       "task_tokens": 84,
       "prototype_labels": 0,
-      "seconds": 0.3363162999958149,
+      "seconds": 0.5472404999964056,
       "hard_counts": {
         "8B_stage0": [
           [

@@ -15,6 +15,14 @@ python study/experiment.py benchmark-codec --out ./results/codec
 
 The smoke trains 22 configurations, including two explicitly tested joint-training copies. It evaluates 28 entries, including B0 and five same-checkpoint variants. Its two evaluation prompts include an intentionally selected nonzero first acceptance to exercise the accepted-token path. This fixture tests computation and protocol behavior. The two-prompt results do not support a quality ranking.
 
+The original 0.6B CPU probe is in [verification/actual-original.json](verification/actual-original.json). To reproduce it, put the original `epoch1.pt` and `training_config.json` in the adapter directory and run the following command from the repository root. The probe checks the hashes in `asset_binding.json` before loading the model.
+
+~~~sh
+python production_probe.py "$ADAPTER_DIR" "$DRAFT_0_6B_DIR" "$MODEL_MANIFEST" ./results/actual-original.json
+~~~
+
+For the five recorded input tokens, disabled and zero gates reproduced the static final hidden state and full logits exactly. A nonzero test gate changed both tensors. The recorded JSON and the CPU rerun were byte-identical (SHA-256 `0cf7721494c4b7ed185bb5d8a394f8cd1e89ce3aa74826bbdcb6e5c2d979fa68`). This probe used the Draft and original adapter only.
+
 ## Run with bound external assets
 
 Supply the original model directories, model manifest, adapter checkpoint, original adapter training configuration, pinned RAW index and development roster. Supply either a verified prepared teacher pack or the original RAW shards. No model download is needed by these commands.
@@ -43,6 +51,8 @@ Choose `epochN.pt` using the `selected` field in `training.json`. Repeat evaluat
 The controlled differences are registered in study/arm_matrix.json. A common JSON profile can preregister `train_recipe.seed`, `loss.tau`, `loss.delta` and the three `loss.lambda_*` coefficients. Pass `--shared-profile FILE` before the subcommand for every arm in the study. Model identity, optimizer, selection and data changes are rejected. The selected and last checkpoint, parameter list, actual phase-update counts, supervised tokens, prototype labels, elapsed time and codebook assignment statistics are recorded separately. Stage timings and parameter counts are available for comparing compute. No FLOP counter is included.
 
 For a paired report, supply the matched B0 and direct parent results. The report includes per-request differences, a family-resampled 95% interval, accepted tokens per round, zero acceptance fraction and survival probabilities. FP32 and BF16 can produce different serial and packed logits. Native greedy argmax decides acceptance for every arm.
+
+Each comparison checks the environment recorded from the loaded Target and Draft before starting evaluation. Both results must match on tensor placement and dtype layout, attention implementation, hardware description, Python, Torch and Transformers versions, CUDA build, cuDNN, backend precision and kernel settings, and thread counts. A missing or different binding requires a fresh evaluation in the same environment. Training checkpoints retain their existing code and model checks and load onto the evaluation device. The environment binding applies to evaluation outputs only. The CPU suite records same-environment pairing, rejection of altered or legacy metadata, and rejection after an actual FP32-to-BF16 Draft conversion in [verification/environment-regression.json](verification/environment-regression.json). Matching fields do not measure host load or guarantee reproducible wall time.
 
 ## Wire and timing
 

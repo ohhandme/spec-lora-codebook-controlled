@@ -10,5 +10,5 @@
   "resume_exact": true,
   "micro_gradient_equal": true,
   "b0_native_exact": true,
-  "target_alone_cpu_12_tokens_ns": 32613500
+  "target_alone_cpu_12_tokens_ns": 54804700
 }

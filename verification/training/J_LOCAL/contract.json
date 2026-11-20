@@ -76,7 +76,7 @@
     "dynamic_rank_hooks": true,
     "save_adapter_copy": true
   },
-  "source": "cf6a4258f685d24ee7d85dd9aa204fff846b27ee2308c0eaffc535ba952d469b",
+  "source": "fa5731c63e5cb43c9836e45c84e9b528b2532d18114230d5e9f1b0db1d238025",
   "assets": {
     "fixture": "qwen3-local-fp32",
     "base": "c7f2e8858d48011290ba409462eb48af701d4c619291fdd9af532206f6c8b44f",

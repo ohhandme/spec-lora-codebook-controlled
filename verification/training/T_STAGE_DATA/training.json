@@ -1,7 +1,7 @@
 {
   "selected": 2,
   "last": 2,
-  "key": "28eafcc25bd3f7157270e2785e9f502176afaaf4505be0cb330fc0b59edb3bf5",
+  "key": "b965ec3b3e6d4d8e26f88bd673c960a9a67fc00ca2b420a6f3f8df02f088826f",
   "scores": [
     {
       "epoch": 1,
@@ -18,7 +18,7 @@
       "windows": 18,
       "task_tokens": 48,
       "prototype_labels": 0,
-      "seconds": 0.13873489999969024,
+      "seconds": 0.19671779999771388,
       "usage": {}
     },
     "bootstrap": {
@@ -26,7 +26,7 @@
       "windows": 9,
       "task_tokens": 0,
       "prototype_labels": 72,
-      "seconds": 0.044178999996802304,
+      "seconds": 0.05856679999851622,
       "usage": {}
     },
     "hard": {
@@ -34,7 +34,7 @@
       "windows": 27,
       "task_tokens": 66,
       "prototype_labels": 0,
-      "seconds": 0.29867909999302356,
+      "seconds": 0.35538430000451626,
       "hard_counts": {
         "8B_stage0": [
           [

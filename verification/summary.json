@@ -17,7 +17,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 0,
-      "wall_ns": 612289500
+      "wall_ns": 776833500
     },
     "C0": {
       "acceptsum": 1,
@@ -35,7 +35,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 503465100
+      "wall_ns": 876719100
     },
     "C_LOCAL": {
       "acceptsum": 1,
@@ -53,7 +53,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 589848000
+      "wall_ns": 795209600
     },
     "C_CONST": {
       "acceptsum": 1,
@@ -71,7 +71,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 552179400
+      "wall_ns": 857178100
     },
     "C_SHUFFLE": {
       "acceptsum": 1,
@@ -89,7 +89,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 588826800
+      "wall_ns": 1007843400
     },
     "T_SOFT_HARD": {
       "acceptsum": 1,
@@ -107,7 +107,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 641130800
+      "wall_ns": 883890700
     },
     "T_STAGE_RAND": {
       "acceptsum": 1,
@@ -125,7 +125,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 775245000
+      "wall_ns": 901223700
     },
     "T_STAGE_DATA": {
       "acceptsum": 1,
@@ -143,7 +143,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 822630300
+      "wall_ns": 866302300
     },
     "L_MARGIN": {
       "acceptsum": 1,
@@ -161,7 +161,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 624857300
+      "wall_ns": 856930600
     },
     "L_PREFIX": {
       "acceptsum": 1,
@@ -179,7 +179,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 635345100
+      "wall_ns": 843715700
     },
     "U_BALANCE": {
       "acceptsum": 1,
@@ -197,7 +197,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 493994700
+      "wall_ns": 846575400
     },
     "U_SHARP": {
       "acceptsum": 1,
@@ -215,7 +215,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 497544700
+      "wall_ns": 878586400
     },
     "U_BALANCE_SHARP": {
       "acceptsum": 1,
@@ -233,7 +233,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 547961100
+      "wall_ns": 881908700
     },
     "G16_K16": {
       "acceptsum": 1,
@@ -251,7 +251,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 501152400
+      "wall_ns": 880703700
     },
     "N_NEAREST": {
       "acceptsum": 1,
@@ -269,7 +269,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 498337800
+      "wall_ns": 876009900
     },
     "N_EMA": {
       "acceptsum": 1,
@@ -287,7 +287,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 504021400
+      "wall_ns": 868721300
     },
     "N_RVQ": {
       "acceptsum": 1,
@@ -305,7 +305,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 670303800
+      "wall_ns": 968308200
     },
     "D_FUSED": {
       "acceptsum": 1,
@@ -323,7 +323,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 680224900
+      "wall_ns": 897236400
     },
     "M8_FIXED": {
       "acceptsum": 1,
@@ -341,7 +341,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 634598700
+      "wall_ns": 888092300
     },
     "M4_FIXED": {
       "acceptsum": 1,
@@ -359,7 +359,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 84,
-      "wall_ns": 616932100
+      "wall_ns": 896699100
     },
     "M16_FIXED": {
       "acceptsum": 1,
@@ -377,7 +377,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 336,
-      "wall_ns": 522682700
+      "wall_ns": 923551500
     },
     "M_MIX": {
       "acceptsum": 1,
@@ -395,7 +395,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 733630800
+      "wall_ns": 781992900
     },
     "M_MIX_E4": {
       "acceptsum": 1,
@@ -413,7 +413,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 84,
-      "wall_ns": 636988500
+      "wall_ns": 852830800
     },
     "M_MIX_E8": {
       "acceptsum": 1,
@@ -431,7 +431,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 629254100
+      "wall_ns": 891080000
     },
     "M_MIX_E16": {
       "acceptsum": 1,
@@ -449,7 +449,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 336,
-      "wall_ns": 480474900
+      "wall_ns": 902126800
     },
     "M_POLICY": {
       "acceptsum": 1,
@@ -467,7 +467,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 88,
-      "wall_ns": 601831500
+      "wall_ns": 835426200
     },
     "J_H": {
       "acceptsum": 1,
@@ -485,7 +485,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 648753700
+      "wall_ns": 866963700
     },
     "J_LOCAL": {
       "acceptsum": 1,
@@ -503,7 +503,7 @@
       ],
       "zero": 0.9565217391304348,
       "payload": 168,
-      "wall_ns": 561364800
+      "wall_ns": 982770500
     }
   },
   "tcp": {
@@ -515,6 +515,6 @@
     "M_MIX_E16": true,
     "D_FUSED": true
   },
-  "source": "cf6a4258f685d24ee7d85dd9aa204fff846b27ee2308c0eaffc535ba952d469b",
+  "source": "fa5731c63e5cb43c9836e45c84e9b528b2532d18114230d5e9f1b0db1d238025",
   "actual_gpu": false
 }

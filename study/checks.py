@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 import torch
 from experiment import (expanded,owner,specs,validate,train,tiny_assets,tiny_split,eval_arm,read,write,
-                       identities,make,paired,restore,summarize,code_id,sha)
+                       identities,make,paired,restore,summarize,code_id,sha,check_reference,comparison_binding)
 from assets import schema_for
 from quantizer import Quantizer,pack,unpack
 from training import token_loss,entropies
@@ -91,6 +91,7 @@ def smoke(out):
     torch.set_num_threads(1)
     target,model,paths,asset=tiny_assets()
     defenses(target,model,paths)
+    write(out/"environment-regression.json",environment_checks(target,model,asset))
     datasets={}
     datasets["train"],_=tiny_split(target,"train",3)
     datasets["calibration"],roster=tiny_split(target,"calibration",4)
@@ -114,6 +115,8 @@ def smoke(out):
         result=eval_arm(target,model,paths,arm,asset,selected,roster[:2],12,-1,datasets["calibration"],roster[2:])
         results[arm]=result
         if arm!="B0":
+            check_reference(results["B0"],"B0",result["comparison_binding"])
+            check_reference(results[specs[arm]["parent"]],specs[arm]["parent"],result["comparison_binding"])
             result["vs_B0"]=paired(result["rows"],results["B0"]["rows"])
             result["vs_parent"]=paired(result["rows"],results[specs[arm]["parent"]]["rows"])
             last=folder/f"epoch{training['last']}.pt"
@@ -157,6 +160,32 @@ def smoke(out):
         if gates:gates.close()
         checks[arm]=True
     write(out/"summary.json",dict(status="passed",arms=summary,tcp=checks,source=code_id(),actual_gpu=False))
+
+
+def environment_checks(target,model,asset):
+    binding=comparison_binding(target,model,asset,[],12,-1,False)
+    reference=dict(arm="B0",comparison_binding=binding)
+    check_reference(json.loads(json.dumps(reference)),"B0",binding)
+    changes={"device":(("models","target","devices"),["cuda:0"]),
+             "target_dtype":(("models","target","embedding_dtype"),"torch.bfloat16"),
+             "draft_layout":(("models","draft","placement_dtype_sha256"),"altered"),
+             "target_attention":(("models","target","attention"),"sdpa"),
+             "torch":(("torch",),"different"),"transformers":(("transformers",),"different"),
+             "kernel":(("sdpa","math"),not binding["environment"]["sdpa"]["math"])}
+    for keys,value in changes.values():
+        altered=copy.deepcopy(reference)
+        node=altered["comparison_binding"]["environment"]
+        for key in keys[:-1]:node=node[key]
+        node[keys[-1]]=value
+        raises(lambda:check_reference(altered,"B0",binding))
+    legacy=copy.deepcopy(reference)
+    del legacy["comparison_binding"]["environment"]
+    raises(lambda:check_reference(legacy,"B0",binding))
+    changed=comparison_binding(target,copy.deepcopy(model).to(torch.bfloat16),asset,[],12,-1,False)
+    assert changed["environment"]["models"]["draft"]["embedding_dtype"]=="torch.bfloat16"
+    raises(lambda:check_reference(reference,"B0",changed))
+    return dict(identical_accepted=True,missing_environment_rejected=True,metadata_changes_rejected=list(changes),
+                actual_bf16_draft_rejected=True,actual_cuda=False,observed=binding["environment"])
 
 
 @torch.no_grad()
