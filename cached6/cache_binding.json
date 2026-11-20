@@ -1,0 +1,20 @@
+{
+  "index_sha256": "6b8797ea5155e4fd9bd01474fd3c669e6902e2025b5723e03e2a5faf311c3ff6",
+  "roster_sha256": "576c46525d252bfeeb108206f0197b27d8aa27e923205cbec738c0e2f5b6326c",
+  "splits": {
+    "train": {
+      "requests": 3986,
+      "windows": 156688,
+      "tokens": 1217488,
+      "source_cache_trace_root": "980e5a17c239e3ff95ef4c9739de477bab619545f73a81f4fc814af05c492db6",
+      "packed_sha256": "9220798c6f36ebc86f04ec9c036b4dda119bc382610cde001334b760d8554f37"
+    },
+    "calibration": {
+      "requests": 503,
+      "windows": 19736,
+      "tokens": 153432,
+      "source_cache_trace_root": "6684fb33a830039fa0c6caf2a1f380ab92674f67f252c1be283de16b4ad8aa6f",
+      "packed_sha256": "4ef9d681025fd820783a08b517713581f672784ff8261b6f82b6dc275b519b69"
+    }
+  }
+}
